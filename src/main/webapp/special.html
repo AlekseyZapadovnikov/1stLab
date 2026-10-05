@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HumanBeing — специальные операции</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script type="module" src="assets/special.js"></script>
+</head>
+<body data-base="./">
+<header></header>
+<main>
+    <h1>Специальные операции</h1>
+    <p class="subtitle">Статистика и групповые действия над объектами.</p>
+    <p class="connection" data-connection role="status">Подключаем автоматическое обновление…</p>
+    <div class="notice" data-message role="alert" hidden></div>
+    <div class="special-grid">
+        <section class="panel"><h2>Среднее время ожидания</h2><p id="average" class="metric" aria-live="polite">Загрузка…</p></section>
+        <section class="panel"><h2>Количество по именам</h2><div id="groups" class="table-wrap" aria-live="polite">Загрузка…</div></section>
+        <section class="panel wide"><h2>Поиск по подстроке имени</h2>
+            <form id="search" class="lookup"><label>Имя содержит<input name="substring" type="search" placeholder="С учётом регистра"></label><button>Найти</button></form>
+            <div id="search-results" class="table-wrap" aria-live="polite"></div>
+        </section>
+        <section class="panel"><h2>Герои без зубочисток</h2><p>Удалить всех героев, у которых нет зубочистки.</p><button id="delete-heroes" class="danger">Удалить героев без зубочисток</button></section>
+        <section class="panel"><h2>Настроение героев</h2><p>Поменять всем героям настроение на максимально печальное — GLOOM.</p><button id="make-gloomy">Сделать героев печальными</button></section>
+    </div>
+</main>
+</body>
+</html>

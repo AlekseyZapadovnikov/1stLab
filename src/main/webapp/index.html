@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HumanBeing — все объекты</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script type="module" src="assets/list.js"></script>
+</head>
+<body data-base="./">
+<header></header>
+<main>
+    <div class="title-row"><h1>Все объекты</h1><div class="actions">
+        <a class="button secondary" href="human/view.html">Найти по ID</a>
+        <a class="button" href="human/create.html">Создать HumanBeing</a>
+    </div></div>
+    <p class="connection" data-connection role="status">Подключаем автоматическое обновление…</p>
+    <div class="notice" data-message role="alert" hidden></div>
+    <form id="filters" class="filters">
+        <label>Имя содержит<input name="name" type="search" placeholder="Любая часть имени"></label>
+        <label>Настроение содержит<input name="mood" type="search" placeholder="Например, GLO"></label>
+        <label>Оружие содержит<input name="weaponType" type="search" placeholder="Например, RI"></label>
+        <button type="submit">Применить</button><button class="secondary" type="reset">Сбросить</button>
+    </form>
+    <form id="sort-controls" class="sort-controls">
+        <label>Сортировать по<select name="sort"><option value="id">ID</option><option value="name">Имени</option><option value="mood">Настроению</option><option value="weaponType">Оружию</option></select></label>
+        <label>Порядок<select name="direction"><option value="asc">По возрастанию</option><option value="desc">По убыванию</option></select></label>
+        <label>На странице<select name="size"><option>10</option><option>25</option><option>50</option><option>100</option></select></label>
+    </form>
+    <div id="humans" class="table-wrap" aria-live="polite">Загрузка объектов…</div>
+    <div class="pagination"><span id="summary" class="summary"></span><button id="previous" class="secondary" disabled>Назад</button><button id="next" class="secondary" disabled>Далее</button></div>
+</main>
+</body>
+</html>
