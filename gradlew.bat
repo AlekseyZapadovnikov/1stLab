@@ -69,6 +69,11 @@ goto fail
 
 set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
 
+if exist "%CLASSPATH%" goto wrapperReady
+powershell -NoProfile -Command "$ErrorActionPreference = 'Stop'; $target = $env:CLASSPATH; $temp = $target + '.' + [guid]::NewGuid().ToString('N'); try { Invoke-WebRequest -UseBasicParsing -TimeoutSec 120 -Uri 'https://raw.githubusercontent.com/gradle/gradle/v9.6.0/gradle/wrapper/gradle-wrapper.jar' -OutFile $temp; if ((Get-FileHash -Algorithm SHA256 -LiteralPath $temp).Hash -ne '497c8c2a7e5031f6aa847f88104aa80a93532ec32ee17bdb8d1d2f67a194a9c7') { throw 'Gradle Wrapper checksum mismatch' }; Move-Item -LiteralPath $temp -Destination $target -Force } finally { if (Test-Path -LiteralPath $temp) { Remove-Item -LiteralPath $temp } }"
+if errorlevel 1 goto fail
+:wrapperReady
+
 
 @rem Execute Gradle
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %*

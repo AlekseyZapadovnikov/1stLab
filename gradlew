@@ -116,6 +116,29 @@ esac
 
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
+if [ ! -f "$CLASSPATH" ]; then
+    command -v curl >/dev/null 2>&1 || die "ERROR: curl is required to download the Gradle Wrapper."
+    wrapper_download=$(mktemp "$CLASSPATH.XXXXXX") || exit 1
+    trap 'rm -f "$wrapper_download"' EXIT
+    trap 'exit 1' HUP INT TERM
+    curl --fail --location --silent --show-error --connect-timeout 15 --max-time 120 \
+        https://raw.githubusercontent.com/gradle/gradle/v9.6.0/gradle/wrapper/gradle-wrapper.jar \
+        -o "$wrapper_download" || die "ERROR: Could not download the Gradle Wrapper."
+    if command -v sha256sum >/dev/null 2>&1; then
+        wrapper_hash=$(sha256sum "$wrapper_download")
+    elif command -v shasum >/dev/null 2>&1; then
+        wrapper_hash=$(shasum -a 256 "$wrapper_download")
+    elif command -v sha256 >/dev/null 2>&1; then
+        wrapper_hash=$(sha256 -q "$wrapper_download")
+    else
+        die "ERROR: sha256sum, shasum or sha256 is required to verify the Gradle Wrapper."
+    fi
+    [ "${wrapper_hash%% *}" = '497c8c2a7e5031f6aa847f88104aa80a93532ec32ee17bdb8d1d2f67a194a9c7' ] ||
+        die "ERROR: Gradle Wrapper checksum mismatch."
+    mv "$wrapper_download" "$CLASSPATH" || exit 1
+    trap - EXIT HUP INT TERM
+fi
+
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
