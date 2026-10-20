@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.OptionalDouble;
 
+/** Обрабатывает HTTP-запросы к людям, справочным данным и специальным операциям через сервисный слой. */
 @Path("/")
 @RequestScoped
 @Produces(MediaType.APPLICATION_JSON)

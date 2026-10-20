@@ -89,6 +89,7 @@ export function subscribe(refresh) {
     function status(text, connected) {
         if (!state) return;
         state.textContent = text;
+        state.hidden = !text;
         state.classList.toggle('connected', connected);
     }
     function connect() {
@@ -100,7 +101,7 @@ export function subscribe(refresh) {
         socket = new WebSocket(endpoint);
         socket.onopen = () => {
             delay = 1000;
-            status('Автоматическое обновление подключено', true);
+            status('', true);
             // Refresh on reconnect, including changes missed while disconnected.
             update();
         };

@@ -7,6 +7,7 @@ import ru.itmo.entity.Car;
 import ru.itmo.entity.Coordinates;
 import ru.itmo.entity.HumanBeing;
 
+/** Преобразует человека, машину и координаты в JSON для ответов API. */
 final class EntityJson {
     private EntityJson() {
     }

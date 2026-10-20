@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** Преобразует исключения API в JSON с сообщением об ошибке и соответствующим HTTP-статусом. */
 @Provider
 public class ApiExceptionMapper implements ExceptionMapper<Exception> {
     private static final Logger LOGGER = Logger.getLogger(ApiExceptionMapper.class.getName());

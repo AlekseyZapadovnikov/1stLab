@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/** Хранит WebSocket-соединения браузеров и рассылает уведомления об изменении данных. */
 @ServerEndpoint("/changes")
 public class ChangesEndpoint {
     private static final Logger LOGGER = Logger.getLogger(ChangesEndpoint.class.getName());

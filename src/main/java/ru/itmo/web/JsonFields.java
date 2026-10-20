@@ -6,7 +6,7 @@ import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.ws.rs.BadRequestException;
 
-// Validates the transport format; domain constraints belong to the service.
+/** Читает и проверяет поля входящего JSON; бизнес-ограничения проверяются в сервисном слое. */
 final class JsonFields {
     private JsonFields() {
     }
